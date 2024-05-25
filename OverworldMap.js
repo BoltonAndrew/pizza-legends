@@ -8,10 +8,10 @@ class OverworldMap {
     this.walls = config.walls || {};
 
     this.lowerImage = new Image();
-    this.lowerImage.src = config.lowerSrc;
+    this.lowerImage.src = "." + config.lowerSrc;
 
     this.upperImage = new Image();
-    this.upperImage.src = config.upperSrc;
+    this.upperImage.src = "." + config.upperSrc;
 
     this.isCutscenePlaying = false;
     this.isPaused = false;
