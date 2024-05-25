@@ -2,7 +2,7 @@ class Sprite {
   constructor(config) {
     //Set up the image
     this.image = new Image();
-    this.image.src = config.src;
+    this.image.src = "." + config.src;
     this.image.onload = () => {
       this.isLoaded = true;
     };
