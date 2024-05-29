@@ -8,6 +8,16 @@ const utils = {
   asGridCoord(x, y) {
     return `${x * 16},${y * 16}`;
   },
+  asCoord(x, y) {
+    return `${x / 16},${y / 16}`;
+  },
+  randomCoords(obj) {
+    const keys = Object.keys(obj);
+    const randomIndex = Math.floor(Math.random() * keys.length);
+    const randomKey = keys[randomIndex];
+    const resultArray = randomKey.split(",").map(Number);
+    return resultArray;
+  },
   nextPosition(initialX, initialY, direction) {
     let x = initialX;
     let y = initialY;

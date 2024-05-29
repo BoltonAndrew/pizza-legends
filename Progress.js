@@ -1,8 +1,8 @@
 class Progress {
   constructor() {
-    this.mapId = "Kitchen";
-    this.startingHeroX = 7;
-    this.startingHeroY = 3;
+    this.mapId = "Entrance";
+    this.startingHeroX = 60;
+    this.startingHeroY = 55;
     this.startingHeroDirection = "down";
     this.saveFileKey = "PizzaLegends_SaveFile1";
   }

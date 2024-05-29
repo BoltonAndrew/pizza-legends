@@ -35,13 +35,38 @@ class Overworld {
 
     //Draw Upper layer
     this.map.drawUpperImage(this.ctx, cameraPerson);
+
+    //Draw any Overlays
+    Object.values(this.map.gameObjects).forEach((obj) => {
+      if (obj.id === "dropOffPoint") {
+        obj.sprite.isShadowLoaded = false;
+        obj.sprite.draw(this.ctx, cameraPerson);
+        obj.sprite.isShadowLoaded = true;
+      }
+    });
   }
 
   startGameLoop() {
     let previousMs;
     const step = 1 / 60;
 
+    //Timer logic
+    const startTime = Date.now();
+    const duration = 1 * 60 * 1000;
+
     const stepFn = (timestampMs) => {
+      //Timer logic
+      const currentTime = Date.now();
+      const elapsedTime = currentTime - startTime;
+      const remainingTime = duration - elapsedTime;
+
+      // console.log(remainingTime / 1000 / 60);
+
+      // if (remainingTime <= 0) {
+      //   this.init();
+      //   return;
+      // }
+
       if (this.map.isPaused) {
         return;
       }
@@ -130,10 +155,11 @@ class Overworld {
     }
 
     //Load the HUD
-    this.hud = new Hud();
-    this.hud.init(this.element);
+    // this.hud = new Hud();
+    // this.hud.init(this.element);
 
     //Start the first map
+    // this.startMap(window.OverworldMaps.Entrance);
     this.startMap(window.OverworldMaps[this.progress.mapId], initialHeroState);
 
     //Create controls

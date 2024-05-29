@@ -114,6 +114,49 @@ class OverworldEvent {
     resolve();
   }
 
+  toggleFlag(resolve) {
+    window.playerState.storyFlags[this.event.flag] =
+      !window.playerState.storyFlags[this.event.flag];
+    console.log(window.playerState);
+    resolve();
+  }
+
+  decreaseCrateQuantity(resolve) {
+    const obj = this.map.gameObjects[this.event.id];
+    obj.quantity = obj.quantity > 0 ? obj.quantity - 1 : 0;
+    if (obj.quantity === 0) {
+      delete this.map.gameObjects[this.event.id];
+    }
+    resolve();
+  }
+
+  displayTarget(resolve) {
+    const [x, y] = utils.randomCoords(this.map.shelves[this.event.dept]);
+    const dropOffPoint = new DropOffPoint({
+      id: "dropOffPoint",
+      type: "DropOffPoint",
+      x, //May have to change, unsure of whether they get converted or not
+      y,
+    });
+    this.map.gameObjects.dropOffPoint = dropOffPoint;
+    resolve();
+  }
+
+  dropOffItem(resolve) {
+    console.log("Dropped Off");
+    delete this.map.gameObjects.dropOffPoint;
+
+    //Increase quantity
+    resolve();
+  }
+
+  changeSprite(resolve) {
+    const who = this.map.gameObjects[this.event.whoId];
+    who.sprite.image.src = this.event.src;
+
+    resolve();
+  }
+
   craftingMenu(resolve) {
     const menu = new CraftingMenu({
       pizzas: this.event.pizzas,

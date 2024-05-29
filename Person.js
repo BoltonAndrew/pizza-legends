@@ -16,6 +16,7 @@ class Person extends GameObject {
   }
 
   update(state) {
+    //console.log(utils.asCoord(this.x, this.y)); //Debugging Location
     if (this.movingProgressRemaining > 0) {
       this.updatePosition();
     } else {

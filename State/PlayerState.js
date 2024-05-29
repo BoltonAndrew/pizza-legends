@@ -37,6 +37,7 @@ class PlayerState {
     ];
     this.storyFlags = {
       TALKED_TO_ERIO: false,
+      IS_CARRYING: false,
     };
   }
 
